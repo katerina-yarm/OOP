@@ -31,6 +31,10 @@ Triangle.prototype = Object.create(Figure.prototype)
 Сircle.prototype = Object.create(Figure.prototype)
 Square.prototype = Object.create(Figure.prototype)
 
+Triangle.prototype.constructor = Triangle
+Сircle.prototype.constructor = Сircle
+Square.prototype.constructor = Square
+
 Triangle.prototype.calculateArea = function () {
   return `${Figure.prototype.calculateArea.apply(this)} ${0.5 * this.a * this.h}.`
 }
@@ -41,9 +45,9 @@ Square.prototype.calculateArea = function () {
   return `${Figure.prototype.calculateArea.apply(this)} ${Math.pow(this.a, 2)}.`
 }
 
-const triangle = new Triangle('Triangle', 10, 5)
-const circle = new Сircle('Circle', 3)
-const square = new Square('Square', 2)
+var triangle = new Triangle('Triangle', 10, 5)
+var circle = new Сircle('Circle', 3)
+var square = new Square('Square', 2)
 
 console.log(triangle.calculateArea(), triangle.draw())
 console.log(circle.calculateArea(), circle.draw())
