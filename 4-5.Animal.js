@@ -1,17 +1,14 @@
-//функциональный стиль ООП
+//functional OOP style
 function Animal() {
-  foodAmount = 50
+  var foodAmount = 50
+  var self = this
 
-  formatFoodAmount = function () {
-    return `${foodAmount} гр.`
-  }
-
-  this.feed = function () {
-    return `Насыпаем в миску ${formatFoodAmount()} корма.`
+  formatFoodAmount = function (foodAmount) {
+    return foodAmount + 'гр.'
   }
 
   this.dailyNorm = function (amount) {
-    if (!arguments.length) return foodAmount
+    if (!arguments.length) return formatFoodAmount(foodAmount)
     if (amount < 50) {
       throw new Error('Дневная норма не должна быть меньше 50 гр.')
     }
@@ -19,7 +16,11 @@ function Animal() {
       throw new Error('Дневная норма не должна быть больше 500 гр.')
     }
     foodAmount = amount
-    return foodAmount
+    return formatFoodAmount(foodAmount)
+  }
+
+  this.feed = function () {
+    return 'Насыпаем в миску ' + self.dailyNorm() + ' корма.'
   }
 }
 
@@ -31,14 +32,14 @@ function Cat() {
     return this
   }
 
-  //расширяем метод родителя
-  let animalFeed = this.feed
+  var animalFeed = this.feed
   this.feed = function () {
-    console.log(`${animalFeed.call(this)} \nКот доволен ^_^`)
+    console.log(animalFeed() + '\nКот доволен ^_^')
     return this
   }
 }
 
-const Vasya = new Cat()
+var cat = new Cat()
 
-Vasya.feed().stroke()
+cat.dailyNorm(100)
+cat.feed().stroke()

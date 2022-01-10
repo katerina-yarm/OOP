@@ -1,18 +1,15 @@
 function Cat(name) {
-  this.name = name // публичное свойство
-  foodAmount = 50 //приватное свойство
+  this.name = name
+  var foodAmount = 50
 
-  //приватный метод
   function formatFoodAmount() {
-    return `${foodAmount} гр.`
+    return foodAmount + 'гр.'
   }
 
-  // публичный метод
   this.feed = function () {
-    return `Насыпаем в миску ${formatFoodAmount()} корма.`
+    return 'Насыпаем в миску ' + formatFoodAmount() + ' корма.'
   }
 
-  //единый геттер-сеттер
   this.dailyNorm = function (amount) {
     if (!arguments.length) return foodAmount
     if (amount < 50) {
@@ -26,6 +23,7 @@ function Cat(name) {
   }
 }
 
-const Vasya = new Cat('Vasya')
+var cat = new Cat('Vasya')
 
-console.log(Vasya.dailyNorm(100))
+cat.dailyNorm(100)
+console.log(cat.feed())

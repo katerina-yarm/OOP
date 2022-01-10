@@ -1,14 +1,15 @@
-//прототипный стиль ООП
-function Animal() {
+//prototype OOP style
+function Animal(name) {
+  this.name = name
   this._foodAmount = 50
 }
 
 Animal.prototype._formatFoodAmount = function () {
-  return `${this._foodAmount} гр.`
+  return this._foodAmount + 'гр.'
 }
 
 Animal.prototype.feed = function () {
-  return `Насыпаем в миску ${this._formatFoodAmount()} корма.`
+  return 'Насыпаем в миску ' + this._formatFoodAmount() + ' корма.'
 }
 
 Animal.prototype.dailyNorm = function (amount) {
@@ -23,11 +24,12 @@ Animal.prototype.dailyNorm = function (amount) {
   return this._foodAmount
 }
 
-function Cat() {
+function Cat(name) {
   Animal.apply(this, arguments)
 }
 
 Cat.prototype = Object.create(Animal.prototype)
+Cat.prototype.constructor = Cat
 
 Cat.prototype.stroke = function () {
   console.log('Гладим кота.')
@@ -35,11 +37,11 @@ Cat.prototype.stroke = function () {
 }
 
 Cat.prototype.feed = function () {
-  console.log(`${Animal.prototype.feed.apply(this)} \nКот доволен ^_^`)
+  console.log(Animal.prototype.feed.apply(this) + '\nКот доволен ^_^')
   return this
 }
 
-const cat = new Cat()
+var cat = new Cat()
 
 cat.dailyNorm(100)
 cat.feed().stroke()

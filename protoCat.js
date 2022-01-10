@@ -1,15 +1,14 @@
-//прототипный стиль ООП
 function Cat(name) {
   this.name = name
   this._foodAmount = 50
 }
 
 Cat.prototype._formatFoodAmount = function () {
-  return `${this._foodAmount} гр.`
+  return this._foodAmount + 'гр.'
 }
 
 Cat.prototype.feed = function () {
-  return `Насыпаем в миску ${this._formatFoodAmount()} корма.`
+  return 'Насыпаем в миску ' + this._formatFoodAmount() + 'корма.'
 }
 
 Cat.prototype.dailyNorm = function (amount) {
@@ -24,6 +23,7 @@ Cat.prototype.dailyNorm = function (amount) {
   return this._foodAmount
 }
 
-const Vasya = new Cat('Vasya')
+var cat = new Cat('Vasya')
 
-console.log(Vasya.feed())
+cat.dailyNorm(100)
+console.log(cat.feed())
