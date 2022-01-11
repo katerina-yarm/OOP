@@ -5,29 +5,24 @@ class Cook {
   constructor(tool) {
     this.tool = tool
   }
-
   cook() {
     return `I am cooking with help of ${this.tool.getTool()}`
   }
 }
 
-class KnifeFromTheFirstPlaceOfWork {
-  constructor() {
-    this.knife = new FirstPlace()
-  }
-
+class ProfessionalKnife {
   getTool() {
-    return this.knife.get()
+    return 'professional knife'
   }
 }
 
-
-
-class FirstPlace {
-  get() {
-    return `knife from first place of work`
+class KnifeFromTheFirstPlaceOfWork {
+  getTool() {
+    return 'knife from first place of work'
   }
 }
 
-const cook = new Cook(new KnifeFromTheFirstPlaceOfWork())
+//const cook = new Cook(new KnifeFromTheFirstPlaceOfWork())
+const cook = new Cook(new ProfessionalKnife())
+
 console.log(cook.cook())
